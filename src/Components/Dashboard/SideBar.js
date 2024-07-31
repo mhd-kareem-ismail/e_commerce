@@ -8,15 +8,17 @@ import { WindowSize } from "../../Context/WindowContext";
 
 export default function SideBar() {
   const menu = useContext(Menu);
-  const windowSize = useContext(WindowSize)
-  console.log(windowSize);
-  
+  const WindowContext = useContext(WindowSize);
+  const windowSize = WindowContext.windowSize;
   const isOpen = menu.isOpen;
 
   return (
     <div
       className="side-bar pt-3"
-      style={{ width: isOpen ? "240px" : "fit-content" }}
+      style={{
+        left: windowSize < "768" ? (isOpen ? 0 : "-100%") : 0,
+        width: isOpen ? "240px" : "fit-content",
+      }}
     >
       <NavLink
         to={"users"}
