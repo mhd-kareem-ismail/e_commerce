@@ -4,6 +4,7 @@ import { REGISTER, baseUrl } from "../../Api/Api";
 import LoadingSubmit from "../../Components/Loading/Loading";
 import Cookie from "cookie-universal";
 import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   //States
@@ -12,6 +13,7 @@ export default function Register() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   //Loading
 
@@ -36,7 +38,7 @@ export default function Register() {
       setLoading(false);
       const token = res.data.token;
       cookie.set("e-commerce", token);
-      window.location.pathname = "/users";
+      navigate("/dashboard/users", { replace: true });
     } catch (error) {
       setLoading(false);
 

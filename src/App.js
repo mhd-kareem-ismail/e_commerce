@@ -6,6 +6,8 @@ import Register from "./Pages/Auth/Register";
 import Users from "./Pages/Dashboard/Users";
 import GoogleCallback from "./Pages/Auth/GoogleCallback";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import RequireAuth from "./Pages/Auth/RequireAuth";
+import User from "./Pages/Dashboard/User";
 
 function App() {
   return (
@@ -17,8 +19,11 @@ function App() {
         <Route element={<Register />} path="/register" />
         <Route element={<GoogleCallback />} path="/auth/google/callback" />
         {/*Protected Routes */}
-        <Route element={<Dashboard />} path="/dashboard">
-          <Route element={<Users />} path="users" />
+        <Route element={<RequireAuth />}>
+          <Route element={<Dashboard />} path="/dashboard">
+            <Route element={<Users />} path="users" />
+            <Route element={<User />} path="users/:id" />
+          </Route>
         </Route>
       </Routes>
     </div>
